@@ -92,11 +92,16 @@ public class UserDAO {
             ResultSet res = prep.executeQuery() ;
             if( res.next() ) {
                 User user = new User( res ) ;
-                // pass - открытый пароль, user.pass - Hash(pass,user.salt)
+                 //pass - открытый пароль, user.pass - Hash(pass,user.salt)
                 String expectedHash = this.hashPassword( pass, user.getSalt() ) ;
                 if( expectedHash.equals( user.getPass() ) ) {
                     return user ;
                 }
+
+//                if(pass.equals(user.getPass()))
+//                {
+//                    return user;
+//                }
             }
             /*
             Д.З. Определить - если у пользователя нет соли, то проводить
